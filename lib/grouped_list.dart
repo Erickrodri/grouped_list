@@ -277,7 +277,7 @@ class _GroupedListViewState<T, E> extends State<GroupedListView<T, E>> {
 
   @override
   void initState() {
-    _controller = widget.controller ?? ScrollController();
+    _controller = ScrollController();
     if (widget.useStickyGroupSeparators) {
       _controller.addListener(_scrollListener);
     }
@@ -342,7 +342,8 @@ class _GroupedListViewState<T, E> extends State<GroupedListView<T, E>> {
       children: <Widget>[
         ListView.builder(
           scrollDirection: widget.scrollDirection,
-          controller: _controller,
+          controller:
+              widget.useStickyGroupSeparators ? _controller : widget.controller,
           primary: widget.primary,
           physics: widget.physics,
           shrinkWrap: widget.shrinkWrap,
